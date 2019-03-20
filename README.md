@@ -14,27 +14,29 @@ The lab was done in GNS3.
 3. git
 
 ##### Clone the repo:
-https://github.com/rynldtbuen/cisco-ansible-test01.git
+`https://github.com/rynldtbuen/cisco-ansible-test01.git`
 
 ##### Initial configurations of deployment device:
 
 Note: Because we are using a VIOS we cannot simulate a AutoInstall feature on Cisco IOS device therefore just to simulate the process of AutoInstall we need to additonal configuration on the deployment device. In AutoInstall we don't need this configuration.
 
-1. Setup your network
+1. Setup your network.
 
 1. Enable the device to obtain config files from tftp server.
 
-    service config
+`service config`
 
 2. Configure the management interface (usually connected to out-of-band management switch)
    of the deployment device to obtain ip address from dhcp server. While in interface configuration copy
    the hardware address of the management interface and paste in the ansible inventory file named 'devices' 
    into a 'mgmt_hwaddr' variable
-    
-    ! Change the commands accordingly
-    interface GigabitEthernet0/0
-       no switchport
-       ip address dhcp
+   
+```
+! Change the commands accordingly
+interface GigabitEthernet0/0
+ no switchport
+ ip address dhcp
+```
 
 3. Save the changes and reload the device
 
@@ -42,4 +44,4 @@ Note: Because we are using a VIOS we cannot simulate a AutoInstall feature on Ci
 
 1. Edit the ansible inventory and variables as per your requirements and setup
 
-ansible-playbook save_running_config
+`ansible-playbook save_running_config`
