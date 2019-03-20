@@ -1,0 +1,25 @@
+---
+- import_playbook: inventory.yml
+
+- hosts: switch
+  gather_facts: no
+  tasks:
+
+  - name: wait for ssh port to open
+    wait_for:
+      port: 22
+  - name: disable tftp load config files and change hostname
+    ios_config:
+      lines:
+      - no service config
+      - hostname {{ inventory_hostname }}
+      defaults: yes
+      save_when: changed
+  - name: backup running configuration
+    ios_config:
+      backup: yes
+    register: backup
+  - name: show running configuration 
+    shell: cat {{ backup['backup_path']  }}
+    delegate_to: localhost
+    changed_when: false

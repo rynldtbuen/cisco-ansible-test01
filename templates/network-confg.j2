@@ -1,0 +1,12 @@
+ip domain-name {{ domain_name }}
+
+username reynold priv 15 secret cisco
+
+line vty 0 4
+ logging synchronous
+ transport input ssh
+ login local
+
+crypto key generate rsa general-keys modulus 1024
+
+end

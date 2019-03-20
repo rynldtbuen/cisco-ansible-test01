@@ -1,0 +1,12 @@
+localhost ansible_connection=local ansible_become=true ansible_become_pass=admin ansible_python_interpreter=/usr/bin/python3
+
+[switch]
+switch01 mgmt_hwaddr='0c:40:ca:46:db:00'
+switch02 mgmt_hwaddr='0c:40:ca:e6:50:00'
+#router01 mgmt_hwaddr='0c:40:ca:c6:7b:00'
+
+[switch:vars]
+ansible_network_os=ios 
+ansible_connection=network_cli
+ansible_user=reynold
+ansible_ssh_pass=cisco

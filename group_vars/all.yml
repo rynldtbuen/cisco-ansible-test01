@@ -1,0 +1,4 @@
+domain_name: 'ansiblecisco.lab'
+tftp_server: '192.168.1.253'
+name_server: '192.168.1.253'
+upstream_name_server: '8.8.8.8'

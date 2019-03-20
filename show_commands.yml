@@ -1,0 +1,15 @@
+---
+- hosts: switch
+  gather_facts: no
+  tasks:
+
+  - name: show run | section ^interface
+    ios_command:
+      commands:
+      - show run | section ^interface
+    register: show
+
+  - set_fact:
+     run_interface: "{{ show['stdout'] }}"
+
+  - debug: msg="{{ run_interface.split('\n') | reject('search', '') | list }}"
